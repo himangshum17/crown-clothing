@@ -1,24 +1,60 @@
+import { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { MenuAlt3Icon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline';
 
 const Navigation = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const handleMenuToggle = () => {
+    setIsMenuOpen(prev => !prev);
+  };
   return (
     <>
       <header className='py-6'>
         <div className='container'>
-          <div className='flex justify-between'>
+          <div className='flex items-center relative'>
             <Link to='/'>
               <img src='/assets/images/logo/crown.svg' alt='' />
             </Link>
-            <nav>
-              <ul className='flex items-center space-x-6'>
+            <button className='lg:hidden ml-auto' onClick={handleMenuToggle}>
+              {isMenuOpen ? (
+                <XIcon className='h-6 w-6' />
+              ) : (
+                <MenuAlt3Icon className='h-6 w-6' />
+              )}
+            </button>
+            <nav
+              className={`absolute top-full left-0 right-0 p-4 lg:relative lg:p-0 lg:top-0 lg:left-auto lg:right-auto ml-auto lg:shadow-none bg-white shadow-lg lg:block ${
+                isMenuOpen ? 'block' : 'hidden'
+              }`}>
+              <ul className='lg:flex items-center space-y-2 lg:space-y-0 lg:space-x-6'>
                 <li>
-                  <Link to='/'>Home</Link>
+                  <Link
+                    className='text-sm uppercase tracking-wide font-medium text-gray-700 hover:text-blue-700'
+                    to='/shop'>
+                    Shop
+                  </Link>
                 </li>
                 <li>
-                  <Link to='/shop'>Shop</Link>
+                  <Link
+                    className='text-sm uppercase tracking-wide font-medium text-gray-700 hover:text-blue-700'
+                    to='/contact'>
+                    Contact
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className='text-sm uppercase tracking-wide font-medium text-gray-700 hover:text-blue-700'
+                    to='#'>
+                    Signin
+                  </Link>
                 </li>
               </ul>
             </nav>
+            <div className='ml-2 lg:ml-6'>
+              <Link to='#' className='text-gray-700 hover:text-blue-700'>
+                <ShoppingBagIcon className='h-6 w-6' />
+              </Link>
+            </div>
           </div>
         </div>
       </header>

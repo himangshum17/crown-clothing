@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { MenuAlt3Icon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline';
 
 const Navigation = () => {
@@ -9,9 +9,9 @@ const Navigation = () => {
   };
   return (
     <>
-      <header className='py-6'>
+      <header className='pt-6'>
         <div className='container'>
-          <div className='flex items-center relative'>
+          <div className='flex items-center relative border-b border-gray-200 pb-6'>
             <Link to='/'>
               <img src='/assets/images/logo/crown.svg' alt='' />
             </Link>
@@ -58,7 +58,6 @@ const Navigation = () => {
           </div>
         </div>
       </header>
-      <Outlet />
     </>
   );
 };

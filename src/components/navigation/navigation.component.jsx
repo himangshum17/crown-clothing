@@ -44,7 +44,7 @@ const Navigation = () => {
                 <li>
                   <Link
                     className='text-sm uppercase tracking-wide font-medium text-gray-700 hover:text-blue-700'
-                    to='#'>
+                    to='/sign-in'>
                     Signin
                   </Link>
                 </li>

@@ -3,6 +3,8 @@ import {
   createAuthUserWithEmailandPassword,
   createUserDocumentFromAuth,
 } from '../../utils/firebase/firebase.utils';
+import Button from '../button';
+import FormInput from '../form-input';
 const initialFormFields = {
   displayName: '',
   email: '',
@@ -38,58 +40,47 @@ const SignUpForm = () => {
   };
   return (
     <div>
-      <h2>Signup with your email and password</h2>
+      <h2 className='text-4xl text-gray-800 font-semibold'>
+        Don't have an account?
+      </h2>
+      <span className='text-base text-gray-600'>
+        Signup with your email and password
+      </span>
       <form onSubmit={handleFormSubmit}>
         <div className='grid gap-4'>
-          <div className='grid gap-2'>
-            <label htmlFor='dname'>Display Name</label>
-            <input
-              type='text'
-              onChange={handleInputChange}
-              value={displayName}
-              name='displayName'
-              id='dname'
-              className='h-14 py-2 px-4 bg-gray-300 rounded-lg'
-            />
-          </div>
-          <div className='grid gap-2'>
-            <label htmlFor='email'>Email Address</label>
-            <input
-              type='text'
-              onChange={handleInputChange}
-              value={email}
-              name='email'
-              id='email'
-              className='h-14 py-2 px-4 bg-gray-300 rounded-lg'
-            />
-          </div>
-          <div className='grid gap-2'>
-            <label htmlFor='password'>Password</label>
-            <input
-              type='password'
-              onChange={handleInputChange}
-              value={password}
-              name='password'
-              id='password'
-              className='h-14 py-2 px-4 bg-gray-300 rounded-lg'
-            />
-          </div>
-          <div className='grid gap-2'>
-            <label htmlFor='cpassword'>Confirm Password</label>
-            <input
-              type='password'
-              onChange={handleInputChange}
-              value={confirmPassword}
-              name='confirmPassword'
-              id='cpassword'
-              className='h-14 py-2 px-4 bg-gray-300 rounded-lg'
-            />
-          </div>
-          <button
-            type='submit'
-            className='bg-gray-800 text-gray-200 px-4 py-3 rounded-lg'>
-            Create Account
-          </button>
+          <FormInput
+            label='Display Name'
+            name='displayName'
+            value={displayName}
+            onChange={handleInputChange}
+            type='text'
+            id='dname'
+          />
+          <FormInput
+            label='Email Address'
+            name='email'
+            value={email}
+            onChange={handleInputChange}
+            type='email'
+            id='email'
+          />
+          <FormInput
+            label='Password'
+            name='password'
+            value={password}
+            onChange={handleInputChange}
+            type='password'
+            id='password'
+          />
+          <FormInput
+            label='Confirm Password'
+            name='confirmPassword'
+            value={confirmPassword}
+            onChange={handleInputChange}
+            type='password'
+            id='cpassword'
+          />
+          <Button type='submit'>Create Account</Button>
         </div>
       </form>
     </div>

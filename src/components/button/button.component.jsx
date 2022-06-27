@@ -2,7 +2,7 @@ const Button = ({ children, buttontype, ...otherButtonProps }) => {
   return (
     <button
       {...otherButtonProps}
-      className={`bg-gray-800 text-gray-200 px-4 py-3 rounded-md uppercase tracking-wider hover:bg-gray-700 transition-all border border-transparent ${
+      className={`bg-gray-800 place-self-start text-gray-200 px-4 py-3 rounded-md uppercase tracking-wider hover:bg-gray-700 transition-all border border-transparent ${
         buttontype === 'google' ? 'bg-blue-700 hover:bg-blue-600' : ''
       } ${
         buttontype === 'inverted'

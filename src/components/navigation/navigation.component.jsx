@@ -6,16 +6,12 @@ import { signOutUser } from '../../utils/firebase/firebase.utils';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { currentUser, setCurrentUser } = UseUserContext();
+  const { currentUser } = UseUserContext();
 
   const handleMenuToggle = () => {
     setIsMenuOpen(prev => !prev);
   };
 
-  const signOUtHandler = async () => {
-    await signOutUser();
-    setCurrentUser(null);
-  };
   return (
     <header className='pt-6'>
       <div className='container'>
@@ -52,7 +48,7 @@ const Navigation = () => {
               <li>
                 {currentUser ? (
                   <button
-                    onClick={signOUtHandler}
+                    onClick={signOutUser}
                     className='text-sm uppercase tracking-wide font-medium text-gray-700 hover:text-blue-700'>
                     sign out
                   </button>

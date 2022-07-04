@@ -6,31 +6,24 @@ import {
   signInWithGooglePopup,
   signInAuthUserWithEmailandPassword,
 } from '../../utils/firebase/firebase.utils';
-import UseUserContext from '../../hooks/useUserContext.hook';
 const initialFormFields = {
   email: '',
   password: '',
 };
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(initialFormFields);
-  const { setCurrentUser } = UseUserContext();
   const { email, password } = formFields;
   const handleInputChange = event => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
   };
   const signInWithGoogle = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
   const handleFormSubmit = async e => {
     e.preventDefault();
     try {
-      const { user } = await signInAuthUserWithEmailandPassword(
-        email,
-        password
-      );
-      setCurrentUser(user);
+      await signInAuthUserWithEmailandPassword(email, password);
       setFormFields(initialFormFields);
     } catch (error) {
       switch (error.code) {

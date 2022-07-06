@@ -1,4 +1,13 @@
+import UseProductsContext from '../../hooks/useProductsContext.hook';
+
 const Shop = () => {
-  return <div>Shop</div>;
+  const { products } = UseProductsContext();
+  return (
+    <>
+      {products.map(({ id, name }) => (
+        <div key={id}>{name}</div>
+      ))}
+    </>
+  );
 };
 export default Shop;

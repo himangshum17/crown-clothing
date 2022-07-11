@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MenuAlt3Icon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline';
+import { MenuAlt3Icon, XIcon } from '@heroicons/react/outline';
 import UseUserContext from '../../hooks/useUserContext.hook';
 import { signOutUser } from '../../utils/firebase/firebase.utils';
+import CartIcon from '../cart-icon/cart-icon.component';
+import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -63,10 +65,9 @@ const Navigation = () => {
             </ul>
           </nav>
           <div className='ml-2 lg:ml-6'>
-            <Link to='#' className='text-gray-700 hover:text-blue-700'>
-              <ShoppingBagIcon className='h-6 w-6' />
-            </Link>
+            <CartIcon />
           </div>
+          <CartDropdown />
         </div>
       </div>
     </header>

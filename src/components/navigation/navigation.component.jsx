@@ -5,10 +5,12 @@ import UseUserContext from '../../hooks/useUserContext.hook';
 import { signOutUser } from '../../utils/firebase/firebase.utils';
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
+import UseCartContext from '../../hooks/useCartContext.hook';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { currentUser } = UseUserContext();
+  const { isCartOpen } = UseCartContext();
 
   const handleMenuToggle = () => {
     setIsMenuOpen(prev => !prev);
@@ -67,7 +69,7 @@ const Navigation = () => {
           <div className='ml-2 lg:ml-6'>
             <CartIcon />
           </div>
-          <CartDropdown />
+          {isCartOpen && <CartDropdown />}
         </div>
       </div>
     </header>

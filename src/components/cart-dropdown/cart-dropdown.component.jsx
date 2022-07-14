@@ -4,6 +4,7 @@ import CartItem from '../cart-item';
 
 const CartDropdown = () => {
   const { cartItems } = UseCartContext();
+  console.log(cartItems);
   return (
     <div className='absolute right-0 top-full flex flex-col max-w-xs w-56 border border-gray-900 h-72 z-10 bg-white p-4'>
       {cartItems.length > 0 ? (

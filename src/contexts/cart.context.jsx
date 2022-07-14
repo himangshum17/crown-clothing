@@ -7,12 +7,24 @@ export const CartContext = createContext({
   addToCartItem: () => {},
 });
 
+const addCartItem = (cartItems, productToAdd) => {
+  const existingCartItem = cartItems.find(item => item.id === productToAdd.id);
+
+  if (existingCartItem) {
+    return cartItems.map(item =>
+      item.id === productToAdd.id
+        ? { ...item, quantity: item.quantity + 1 }
+        : item
+    );
+  }
+  return [...cartItems, { ...productToAdd, quantity: 1 }];
+};
+
 export const CartContextProvider = ({ children }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setcartItems] = useState([]);
-  console.log('cartItems', cartItems);
   const addToCartItem = productToAdd => {
-    setcartItems([...cartItems, productToAdd]);
+    setcartItems(addCartItem(cartItems, productToAdd));
   };
   const contextValue = { isCartOpen, setIsCartOpen, addToCartItem, cartItems };
   return (

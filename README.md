@@ -1,3 +1,3 @@
 # Crown Clothing
 
-Ecommerce Website `[work in progress...]`
+Clothing Ecommerce Website `[work in progress...]`

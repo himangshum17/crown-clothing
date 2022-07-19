@@ -6,7 +6,7 @@ import {
 import UseCartContext from '../../hooks/useCartContext.hook';
 
 const Checkout = () => {
-  const { cartItems, addToCartItem } = UseCartContext();
+  const { cartItems, addToCartItem, removeFromCart } = UseCartContext();
   //   console.log('cartItems', cartItems);
   return (
     <section className='pt-10 lg:py-20'>
@@ -34,7 +34,7 @@ const Checkout = () => {
                 <td className='text-left px-4 py-2'>{cartItem.name}</td>
                 <td className='text-left px-4 py-2'>
                   <div className='flex gap-4 items-center'>
-                    <button>
+                    <button onClick={() => removeFromCart(cartItem)}>
                       <MinusCircleIcon className='h-6 w-6' />
                     </button>
                     <span>{cartItem.quantity}</span>

@@ -31,7 +31,7 @@ const Navigation = () => {
             )}
           </button>
           <nav
-            className={`absolute top-full left-0 right-0 p-4 lg:relative lg:p-0 lg:top-0 lg:left-auto lg:right-auto ml-auto lg:shadow-none bg-white shadow-lg lg:block ${
+            className={`absolute top-full left-0 right-0 p-4 lg:relative lg:p-0 lg:top-0 lg:left-auto lg:right-auto ml-auto lg:shadow-none bg-white shadow-lg lg:block z-10 ${
               isMenuOpen ? 'block' : 'hidden'
             }`}>
             <ul className='lg:flex items-center space-y-2 lg:space-y-0 lg:space-x-6'>

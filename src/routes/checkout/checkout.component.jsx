@@ -1,8 +1,12 @@
-import { XCircleIcon } from '@heroicons/react/outline';
+import {
+  MinusCircleIcon,
+  PlusCircleIcon,
+  XCircleIcon,
+} from '@heroicons/react/outline';
 import UseCartContext from '../../hooks/useCartContext.hook';
 
 const Checkout = () => {
-  const { cartItems } = UseCartContext();
+  const { cartItems, addToCartItem } = UseCartContext();
   //   console.log('cartItems', cartItems);
   return (
     <section className='pt-10 lg:py-20'>
@@ -28,10 +32,20 @@ const Checkout = () => {
                   />
                 </td>
                 <td className='text-left px-4 py-2'>{cartItem.name}</td>
-                <td className='text-left px-4 py-2'>{cartItem.quantity}</td>
+                <td className='text-left px-4 py-2'>
+                  <div className='flex gap-4 items-center'>
+                    <button>
+                      <MinusCircleIcon className='h-6 w-6' />
+                    </button>
+                    <span>{cartItem.quantity}</span>
+                    <button onClick={() => addToCartItem(cartItem)}>
+                      <PlusCircleIcon className='h-6 w-6' />
+                    </button>
+                  </div>
+                </td>
                 <td className='text-left px-4 py-2'>{cartItem.price}</td>
                 <td className='text-left px-4 py-2'>
-                  <button>
+                  <button className='text-gray-500 hover:text-red-500'>
                     <XCircleIcon className='h-6 w-6' />
                   </button>
                 </td>

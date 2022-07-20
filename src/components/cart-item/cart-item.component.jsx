@@ -5,7 +5,7 @@ const CartItem = ({ imageUrl, name, price, quantity }) => {
       <div>
         <h3>{name}</h3>
         <span>
-          {quantity} x {price}
+          {quantity} x $ {price}
         </span>
       </div>
     </div>

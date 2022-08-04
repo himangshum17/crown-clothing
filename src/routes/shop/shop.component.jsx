@@ -12,7 +12,7 @@ const Shop = () => {
               {title}
             </h2>
             <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8'>
-              {categoriesMap[title].map(product => (
+              {categoriesMap[title].slice(0, 4).map(product => (
                 <ProductCard key={product.id} {...product} />
               ))}
             </div>

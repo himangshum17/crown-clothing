@@ -10,6 +10,23 @@ export const CartContext = createContext({
   cartTotal: 0,
 });
 
+const CART_ACTIONS_TYPES = {
+  ADD_ITEM_TO_CART: 'ADD_ITEM_TO_CART',
+};
+
+const cartReducer = (state, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case CART_ACTIONS_TYPES.ADD_ITEM_TO_CART:
+      return {
+        ...state,
+      };
+    default:
+      throw new Error(`Invalid action type ${type} inside cartReducer`);
+  }
+};
+
 const addCartItem = (cartItems, productToAdd) => {
   const existingCartItem = cartItems.find(item => item.id === productToAdd.id);
 

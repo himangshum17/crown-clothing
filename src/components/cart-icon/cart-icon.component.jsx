@@ -1,8 +1,8 @@
 import { ShoppingBagIcon } from '@heroicons/react/outline';
 import UseCartContext from '../../hooks/useCartContext.hook';
 const CartIcon = () => {
-  const { setIsCartOpen, cartCount } = UseCartContext();
-  const handleCartToggle = () => setIsCartOpen(prevState => !prevState);
+  const { setIsCartOpen, isCartOpen, cartCount } = UseCartContext();
+  const handleCartToggle = () => setIsCartOpen(!isCartOpen);
   return (
     <button
       className='text-gray-700 hover:text-blue-700 relative'

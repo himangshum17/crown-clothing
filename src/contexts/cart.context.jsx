@@ -1,4 +1,5 @@
 import { createContext, useReducer } from 'react';
+import { createAction } from '../utils/reducer/reducer.util';
 
 export const CartContext = createContext({
   isCartOpen: false,
@@ -17,7 +18,6 @@ const CART_ACTIONS_TYPES = {
 
 const cartReducer = (state, action) => {
   const { type, payload } = action;
-  console.log('payload', payload);
   switch (type) {
     case CART_ACTIONS_TYPES.SET_CART_ITEMS:
       return {
@@ -84,14 +84,13 @@ export const CartContextProvider = ({ children }) => {
       (total, cartItem) => total + cartItem.quantity * cartItem.price,
       0
     );
-    dispatch({
-      type: CART_ACTIONS_TYPES.SET_CART_ITEMS,
-      payload: {
+    dispatch(
+      createAction(CART_ACTIONS_TYPES.SET_CART_ITEMS, {
         cartItems: newCartItems,
         cartCount: newCartCount,
         cartTotal: newCartTotal,
-      },
-    });
+      })
+    );
   };
 
   const addToCartItem = productToAdd => {
@@ -110,10 +109,9 @@ export const CartContextProvider = ({ children }) => {
   };
 
   const setIsCartOpen = boolean => {
-    dispatch({
-      type: CART_ACTIONS_TYPES.TOGGLE_CART_DROPDOWN_ISOPEN,
-      payload: boolean,
-    });
+    dispatch(
+      createAction(CART_ACTIONS_TYPES.TOGGLE_CART_DROPDOWN_ISOPEN, boolean)
+    );
   };
 
   const contextValue = {

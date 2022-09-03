@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MenuAlt3Icon, XIcon } from '@heroicons/react/outline';
-import UseUserContext from '../../hooks/useUserContext.hook';
 import { signOutUser } from '../../utils/firebase/firebase.utils';
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 import UseCartContext from '../../hooks/useCartContext.hook';
+import { useSelector } from 'react-redux';
+import { selectCurrentUser } from '../../store/user/user.selector';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { currentUser } = UseUserContext();
+  const currentUser = useSelector(selectCurrentUser);
   const { isCartOpen } = UseCartContext();
 
   const handleMenuToggle = () => {

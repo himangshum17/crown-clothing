@@ -1,13 +1,13 @@
-import UseProductsContext from '../../hooks/useCategoriesContext.hook';
-
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { ProductCard } from '../../components';
 import Button from '../../components/button';
+import { useSelector } from 'react-redux';
+import { selectCategories } from '../../store/categories/category.selector';
 
 const Category = () => {
-  const { categoriesMap } = UseProductsContext();
+  const categoriesMap = useSelector(selectCategories);
   const [products, setProducts] = useState([]);
   const { category } = useParams();
   const navigate = useNavigate();

@@ -1,10 +1,22 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { CategoryPreview } from '../../components';
-import UseProductsContext from '../../hooks/useCategoriesContext.hook';
+import { setCategoriesMap } from '../../store/categories/category.action';
+import { selectCategories } from '../../store/categories/category.selector';
+import { getCategoriesAndDocuments } from '../../utils/firebase/firebase.utils';
 import Category from '../category/category.component';
 
 const Shop = () => {
-  const { categoriesMap } = UseProductsContext();
+  const dispatch = useDispatch();
+  const categoriesMap = useSelector(selectCategories);
+  useEffect(() => {
+    const getCategoriesMap = async () => {
+      const categoryMap = await getCategoriesAndDocuments('categories');
+      dispatch(setCategoriesMap(categoryMap));
+    };
+    getCategoriesMap();
+  }, [dispatch]);
   return (
     <section className='pt-10 lg:py-20'>
       <div className='container space-y-12'>

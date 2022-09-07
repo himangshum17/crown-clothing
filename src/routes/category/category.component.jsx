@@ -4,10 +4,10 @@ import { useEffect } from 'react';
 import { ProductCard } from '../../components';
 import Button from '../../components/button';
 import { useSelector } from 'react-redux';
-import { selectCategories } from '../../store/categories/category.selector';
+import { selectCategoriesMap } from '../../store/categories/category.selector';
 
 const Category = () => {
-  const categoriesMap = useSelector(selectCategories);
+  const categoriesMap = useSelector(selectCategoriesMap);
   const [products, setProducts] = useState([]);
   const { category } = useParams();
   const navigate = useNavigate();

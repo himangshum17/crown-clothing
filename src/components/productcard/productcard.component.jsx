@@ -1,8 +1,11 @@
-import UseCartContext from '../../hooks/useCartContext.hook';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCartItem } from '../../store/cart/cart.action';
+import { selectCartItems } from '../../store/cart/cart.selector';
 import Button from '../button';
 
 const ProductCard = ({ name, imageUrl, price, id }) => {
-  const { addToCartItem } = UseCartContext();
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
   return (
     <div>
       <div className='relative'>
@@ -11,7 +14,9 @@ const ProductCard = ({ name, imageUrl, price, id }) => {
           <Button
             type='button'
             buttontype='inverted'
-            onClick={() => addToCartItem({ name, imageUrl, price, id })}>
+            onClick={() =>
+              dispatch(addToCartItem(cartItems, { name, imageUrl, price, id }))
+            }>
             add to cart
           </Button>
         </div>

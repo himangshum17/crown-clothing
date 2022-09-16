@@ -1,12 +1,18 @@
 import { ShoppingBagIcon } from '@heroicons/react/outline';
-import UseCartContext from '../../hooks/useCartContext.hook';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsCartOpen } from '../../store/cart/cart.action';
+import {
+  selectCartCount,
+  selectCartisOpen,
+} from '../../store/cart/cart.selector';
 const CartIcon = () => {
-  const { setIsCartOpen, isCartOpen, cartCount } = UseCartContext();
-  const handleCartToggle = () => setIsCartOpen(!isCartOpen);
+  const cartCount = useSelector(selectCartCount);
+  const isCartOpen = useSelector(selectCartisOpen);
+  const dispatch = useDispatch();
   return (
     <button
       className='text-gray-700 hover:text-blue-700 relative'
-      onClick={handleCartToggle}>
+      onClick={() => dispatch(setIsCartOpen(!isCartOpen))}>
       <ShoppingBagIcon className='h-6 w-6' />
       <span className='absolute -top-3 -right-3 text-xs flex min-w-[24px] min-h-[24px] p-1 bg-gray-700 text-gray-100 items-center justify-center rounded-full'>
         {cartCount}

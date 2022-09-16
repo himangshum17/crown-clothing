@@ -12,9 +12,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <CartContextProvider>
-          <App />
-        </CartContextProvider>
+        {/* <CartContextProvider> */}
+        <App />
+        {/* </CartContextProvider> */}
       </Provider>
     </BrowserRouter>
   </React.StrictMode>

@@ -9,10 +9,11 @@ const CartIcon = () => {
   const cartCount = useSelector(selectCartCount);
   const isCartOpen = useSelector(selectCartisOpen);
   const dispatch = useDispatch();
+  const handleCartIsOpen = () => dispatch(setIsCartOpen(!isCartOpen));
   return (
     <button
       className='text-gray-700 hover:text-blue-700 relative'
-      onClick={() => dispatch(setIsCartOpen(!isCartOpen))}>
+      onClick={handleCartIsOpen}>
       <ShoppingBagIcon className='h-6 w-6' />
       <span className='absolute -top-3 -right-3 text-xs flex min-w-[24px] min-h-[24px] p-1 bg-gray-700 text-gray-100 items-center justify-center rounded-full'>
         {cartCount}

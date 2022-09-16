@@ -6,6 +6,8 @@ import Button from '../button';
 const ProductCard = ({ name, imageUrl, price, id }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
+  const handleAddtoCartItem = () =>
+    dispatch(addToCartItem(cartItems, { name, imageUrl, price, id }));
   return (
     <div>
       <div className='relative'>
@@ -14,9 +16,7 @@ const ProductCard = ({ name, imageUrl, price, id }) => {
           <Button
             type='button'
             buttontype='inverted'
-            onClick={() =>
-              dispatch(addToCartItem(cartItems, { name, imageUrl, price, id }))
-            }>
+            onClick={handleAddtoCartItem}>
             add to cart
           </Button>
         </div>

@@ -5,19 +5,31 @@ import {
   PlusCircleIcon,
   XCircleIcon,
 } from '@heroicons/react/outline';
-import UseCartContext from '../../hooks/useCartContext.hook';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  selectCartCount,
+  selectCartItems,
+  selectCartTotal,
+} from '../../store/cart/cart.selector';
+import {
+  addToCartItem,
+  clearItemFromCart,
+  removeFromCart,
+} from '../../store/cart/cart.action';
 
 const Checkout = () => {
-  const {
-    cartItems,
-    addToCartItem,
-    removeFromCart,
-    clearItemFromCart,
-    cartCount,
-    cartTotal,
-  } = UseCartContext();
+  const cartItems = useSelector(selectCartItems);
+  const cartCount = useSelector(selectCartCount);
+  const cartTotal = useSelector(selectCartTotal);
+  const dispatch = useDispatch();
+  const handleRemoveFromCartItems = cartItem =>
+    dispatch(removeFromCart(cartItems, cartItem));
+  const handleAddtoCartItem = cartItem =>
+    dispatch(addToCartItem(cartItems, cartItem));
+  const handleClearFromCart = cartItem =>
+    dispatch(clearItemFromCart(cartItems, cartItem));
   return (
-    <section className='pt-10 lg:py-20'>
+    <section className='py-10 lg:py-20'>
       <div className='container'>
         {cartCount ? (
           <>
@@ -44,13 +56,14 @@ const Checkout = () => {
                     <td className='text-left px-4 py-2'>{cartItem.name}</td>
                     <td className='text-left px-4 py-2'>
                       <div className='flex gap-4 items-center'>
-                        <button onClick={() => removeFromCart(cartItem)}>
+                        <button
+                          onClick={() => handleRemoveFromCartItems(cartItem)}>
                           <MinusCircleIcon className='h-6 w-6' />
                         </button>
                         <span className='tabular-nums'>
                           {cartItem.quantity}
                         </span>
-                        <button onClick={() => addToCartItem(cartItem)}>
+                        <button onClick={() => handleAddtoCartItem(cartItem)}>
                           <PlusCircleIcon className='h-6 w-6' />
                         </button>
                       </div>
@@ -59,7 +72,7 @@ const Checkout = () => {
                     <td className='text-right px-4 py-2'>
                       <button
                         className='text-gray-500 hover:text-red-500'
-                        onClick={() => clearItemFromCart(cartItem)}>
+                        onClick={() => handleClearFromCart(cartItem)}>
                         <XCircleIcon className='h-6 w-6' />
                       </button>
                     </td>

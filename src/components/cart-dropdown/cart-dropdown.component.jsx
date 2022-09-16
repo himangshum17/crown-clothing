@@ -1,9 +1,14 @@
-import UseCartContext from '../../hooks/useCartContext.hook';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import {
+  selectCartCount,
+  selectCartItems,
+} from '../../store/cart/cart.selector';
 import CartItem from '../cart-item';
 
 const CartDropdown = () => {
-  const { cartItems, cartCount } = UseCartContext();
+  const cartItems = useSelector(selectCartItems);
+  const cartCount = useSelector(selectCartCount);
   return (
     <div className='absolute right-0 top-full flex flex-col max-w-xs w-56 border border-gray-900 h-72 z-10 bg-white p-4'>
       {cartCount ? (
